@@ -104,11 +104,9 @@ async function saveEdit() {
 async function deleteEntry(id) {
   if (!id) return;
   const res = await fetch(`/entries/${id}`, { method: 'DELETE' })
-  if (!res.ok) {
-    alert('Failed to delete entry.');
-    return;
+  if (confirm('Are you sure you want to delete this entry? ')) {
+    await fetchEntries()
   }
-  await fetchEntries()
 }
 
 async function fetchEntries() {
